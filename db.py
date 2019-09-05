@@ -19,4 +19,4 @@ def create_db():
     conn.close()
 
 if __name__ == "__main__":
-    reset_db()
+    create_db()
