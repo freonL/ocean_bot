@@ -1,0 +1,14 @@
+__pycache__/*
+._*
+.DS_Store
+.sass-cache
+.Spotlight-V100
+.Trashes
+.vscode
+*.db
+*.out
+*.pyc
+Desktop.ini
+node_modules
+Thumbs.db
+venv
