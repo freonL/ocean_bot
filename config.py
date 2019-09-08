@@ -20,7 +20,7 @@ assistant = AssistantV2(
     iam_apikey = "0B2HITIOQodvrG9zEnBsFBZQHteLtpYBEqS2KECTCMkV",
     url        = "https://gateway-syd.watsonplatform.net/assistant/api"
 )
-WORKSPACE_ID = "3819733a-016d-4f53-bdc2-61a151e55822"
+WORKSPACE_ID  = "3819733a-016d-4f53-bdc2-61a151e55822"
 
-ASSISTANT_ID = "fa7f1040-f02d-4caf-9e24-0eb86ca659df"
-ASSISTANT_URL ="https://gateway-syd.watsonplatform.net/assistant/api/v2/assistants/fa7f1040-f02d-4caf-9e24-0eb86ca659df/sessions"
+ASSISTANT_ID  = "fa7f1040-f02d-4caf-9e24-0eb86ca659df"
+ASSISTANT_URL = "https://gateway-syd.watsonplatform.net/assistant/api/v2/assistants/fa7f1040-f02d-4caf-9e24-0eb86ca659df/sessions"

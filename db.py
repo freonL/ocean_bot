@@ -13,8 +13,11 @@ def create_db():
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
 
-    c.execute('''CREATE TABLE session
-                    (recipient_id, session_id)''')
+    c.execute('''CREATE TABLE if not exists session
+                    (recipient_id text, 
+                    session_id text,
+                    create_time timestamp,
+                    update_time timestamp)''')
     conn.commit()
     conn.close()
 
