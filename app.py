@@ -25,6 +25,7 @@ def receive_message():
         resp = None
         if msg_type is "text":
             resp = get_response(recipient_id, user_msg)
+            analyze_persona()
         elif msg_type is "media":
             resp =  get_message()
         
@@ -104,7 +105,24 @@ def get_response(recipient_id,user_input):
     except ApiException as ex:
         return "ERROR"
 
+def analyze_persona():
 
+    try:
+        with open('profile_1.json') as profile_json:
+            profile = persona.profile(
+                profile_json.read(),
+                'application/json',
+                content_type='application/json',
+                consumption_preferences=True,
+                raw_scores=True
+            ).get_result()
+        print(dumps(profile, indent=2))
+        return profile
+        
+    except ApiException as ex:
+        print ("Method failed with status code " + str(ex.code) + ": " + ex.message)
+
+    pass
 
 def verify_fb_token(token_sent):
     #take token sent by facebook and verify it matches the verify token you sent
