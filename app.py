@@ -1,7 +1,7 @@
 import random
 import sqlite3
 from flask import Flask, request
-from config import fb_bot as bot, anna_bot as anna, belle_bot as belle,   assistant, personality_insights as persona
+from config import fb_bot, anna_bot, belle_bot,   assistant, personality_insights as persona
 from config import VERIFY_TOKEN, WORKSPACE_ID, ASSISTANT_ID, DB_NAME
 from json import dumps
 from ibm_watson import ApiException
@@ -24,14 +24,22 @@ def receive_message():
 
         resp = None
         if msg_type is "text":
-            resp = get_response(recipient_id, user_msg)
+            resp = get_response(assistant, recipient_id, user_msg)
             analyze_persona()
         elif msg_type is "media":
             resp =  get_message()
         
-        send_message(recipient_id, resp)
+        send_message(fb_bot, recipient_id, resp)
 
     return "Message Processed"
+
+@app.route("/anna/", methods=['GET', 'POST'])
+def listen_anna():
+    pass
+
+@app.route("/belle/", methods=['GET', 'POST'])
+def listen_belle():
+    pass
 
 def check_user_msg(events):
     recipient_id = None
@@ -48,7 +56,6 @@ def check_user_msg(events):
                     msg_type = "media"
     
     return recipient_id, msg_type, user_msg
-
 
 
 def get_conv_session(recipient_id):
@@ -88,7 +95,7 @@ def get_conv_session(recipient_id):
         return session_id
 
 
-def get_response(recipient_id,user_input):
+def get_response(assistant,recipient_id,user_input):
     session_id = get_conv_session(recipient_id)
 
     try:
@@ -140,7 +147,7 @@ def get_message():
     # return config.assistant.URL
 
 #uses PyMessenger to send response to user
-def send_message(recipient_id, response):
+def send_message(bot, recipient_id, response):
     #sends user the text message provided via input response parameter
     bot.send_text_message(recipient_id, response)
     return "success"
