@@ -1,7 +1,7 @@
 import random
 import sqlite3
 from flask import Flask, request
-from config import fb_bot as bot , assistant, personality_insights as persona
+from config import fb_bot as bot, anna_bot as anna, belle_bot as belle,   assistant, personality_insights as persona
 from config import VERIFY_TOKEN, WORKSPACE_ID, ASSISTANT_ID, DB_NAME
 from json import dumps
 from ibm_watson import ApiException
@@ -108,7 +108,7 @@ def get_response(recipient_id,user_input):
 def analyze_persona():
 
     try:
-        with open('profile_1.json') as profile_json:
+        with open('profile_2.json') as profile_json:
             profile = persona.profile(
                 profile_json.read(),
                 'application/json',
